@@ -55,6 +55,7 @@ RUN git config --global user.name "deploy" && git config --global user.email dep
 RUN echo "*.pyc" >> /root/.gitignore_global && git config --global core.excludesfile /root/.gitignore_global
 # 默认的环境配置
 ENV WORKDIR=/app/server
+ENV LOG_PATH=/var/log/server
 COPY docker-entrypoint.sh /root/
 COPY .func.sh /deploy/
 COPY sleep.sh /deploy/
