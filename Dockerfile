@@ -15,7 +15,7 @@ RUN rpmdb --rebuilddb && yum install -y \
     echo "[Prepare]"
 
 RUN cd /tmp && \
-    wget http://mirrors.sohu.com/python/3.5.3/Python-3.5.3.tgz && \
+    wget http://mirrors.sohu.com/python/3.6.1/Python-3.6.1.tgz && \
     tar xfz Python-3.5.3.tgz && \
     cd Python-3.5.3 && \
     ./configure --prefix=/usr/local && \
