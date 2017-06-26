@@ -16,8 +16,8 @@ RUN rpmdb --rebuilddb && yum install -y \
 
 RUN cd /tmp && \
     wget http://mirrors.sohu.com/python/3.6.1/Python-3.6.1.tgz && \
-    tar xfz Python-3.5.3.tgz && \
-    cd Python-3.5.3 && \
+    tar xfz Python-3.6.1.tgz && \
+    cd Python-3.6.1 && \
     ./configure --prefix=/usr/local && \
     make && \
     make altinstall && \
