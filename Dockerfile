@@ -43,6 +43,10 @@ RUN cd /tmp && \
     pip3.5 install Twisted-17.1.0.tar.bz2 && \
     echo "Twisted"
 
+# 额外的扩展库
+RUN pip3.5 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple Jinja2
+
+
 # 稳住时差
 RUN /bin/cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 # 导入证书
