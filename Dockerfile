@@ -44,7 +44,7 @@ RUN cd /tmp && \
     echo "Twisted"
 
 # 额外的扩展库
-RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple Jinja2 objgraph PyMySQL SQLAlchemy
+RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple Jinja2 objgraph PyMySQL SQLAlchemy qrcode Pillow
 
 
 # 稳住时差
