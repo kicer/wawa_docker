@@ -50,8 +50,15 @@ function git_clone {
         git submodule update --init --recursive
     else
         cd "${WORKDIR}"
-        git fetch --tags --progress ${GIT} +refs/heads/*:refs/remotes/origin/*
-        git submodule update --init --recursive
+        git checkout -f "${TAG}" 2>/dev/null 1>/dev/null
+        if [ $? -eq 0 ]
+        then
+	    git submodule update --init --recursive
+            info 当前代码版本正确
+        else
+            git fetch --tags --progress ${GIT} +refs/heads/*:refs/remotes/origin/*
+            git submodule update --init --recursive
+        fi
     fi
     git checkout -f "${TAG}" || exitBy "没有指定的版本[${GIT}][${TAG}]"
     # 跟进submodule的版本
