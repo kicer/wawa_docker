@@ -8,10 +8,12 @@ RUN cd /tmp && \
     pip3 install Twisted-17.1.0.tar.bz2 && \
     echo "Twisted"
 
+# ffmpeg
+RUN rpmdb --rebuilddb && yum instlal yasm-devel && yum clean all
+RUN cd /tmp && curl -sSL http://www.ffmpeg.org/releases/ffmpeg-3.2.tar.gz | tar zxv && cd /tmp/ffmpeg-3.2 && ./configure  --enable-shared --prefix=/usr/local/ffmpeg
 # 额外的扩展库
 RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple Jinja2 objgraph PyMySQL SQLAlchemy qrcode Pillow click gevent simplejson
-
-
+RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple requests_futures
 # 稳住时差
 RUN /bin/cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 # 导入证书
@@ -25,6 +27,10 @@ RUN echo "*.pyc" >> /root/.gitignore_global && git config --global core.excludes
 # 默认的环境配置
 ENV WORKDIR=/app/server
 ENV LOG_PATH=/var/log/server
+ENV VIRTUAL_PORT=8080
+ENV ENTRYPOINT=/app/server/start.sh
+ENV DB_HOST=mysql
+ENV REDIS_HOST=redis
 COPY docker-entrypoint.sh /root/
 COPY .func.sh /deploy/
 COPY sleep.sh /deploy/
