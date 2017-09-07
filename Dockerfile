@@ -9,7 +9,7 @@ RUN cd /tmp && \
     echo "Twisted"
 
 # ffmpeg
-RUN rpmdb --rebuilddb && yum install yasm-devel && yum clean all
+RUN rpmdb --rebuilddb && yum install yasm-devel -y && yum clean all
 RUN cd /tmp && curl -sSL http://www.ffmpeg.org/releases/ffmpeg-3.2.tar.gz | tar zxv && cd /tmp/ffmpeg-3.2 && ./configure  --enable-shared --prefix=/usr/local/ffmpeg
 # 额外的扩展库
 RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple Jinja2 objgraph PyMySQL SQLAlchemy qrcode Pillow click gevent simplejson
