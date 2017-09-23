@@ -8,57 +8,7 @@ RUN cd /tmp && \
     echo "Twisted"
 
 # ffmpeg
-RUN rpmdb --rebuilddb && yum install yasm-devel libgomp -y && yum clean all
-# https://github.com/jrottenberg/ffmpeg/blob/master/3.3/centos/Dockerfile
-RUN cd /tmp && curl -sSL http://www.ffmpeg.org/releases/ffmpeg-3.2.tar.gz | tar zxv && cd /tmp/ffmpeg-3.2 && ./configure \
-    --prefix=/usr \
-    --bindir=/usr/bin \
-    --datadir=/usr/share/ffmpeg \
-    --incdir=/usr/include/ffmpeg \
-    --libdir=/usr/lib64 \
-    --mandir=/usr/share/man \
-    --arch=x86_64 \
-    --optflags='-O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic' \
-    --enable-bzlib \
-    --disable-crystalhd \
-    --enable-gnutls \
-    --enable-ladspa \
-    --enable-libass \
-    --enable-libcdio \
-    --enable-libdc1394 \
-    --enable-libfaac \
-    --enable-nonfree \
-    --enable-libfdk-aac \
-    --enable-nonfree \
-    --disable-indev=jack \
-    --enable-libfreetype \
-    --enable-libgsm \
-    --enable-libmp3lame \
-    --enable-openal \
-    --enable-libopenjpeg \
-    --enable-libopus \
-    --enable-libpulse \
-    --enable-libschroedinger \
-    --enable-libsoxr \
-    --enable-libspeex \
-    --enable-libtheora \
-    --enable-libvorbis \
-    --enable-libv4l2 \
-    --enable-libx264 \
-    --enable-libx265 \
-    --enable-libxvid \
-    --enable-x11grab \
-    --enable-avfilter \
-    --enable-avresample \
-    --enable-postproc \
-    --enable-pthreads \
-    --disable-static \
-    --enable-shared \
-    --enable-gpl \
-    --disable-debug \
-    --disable-stripping \
-    --shlibdir=/usr/lib64 \
-    --enable-runtime-cpudetect && make && make install
+RUN rpmdb --rebuilddb && yum -y localinstall --nogpgcheck https://download1.rpmfusion.org/free/el/rpmfusion-free-release-6.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-6.noarch.rpm && yum install ffmpeg -y && yum clean all
 # 额外的扩展库
 RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple Jinja2 objgraph PyMySQL SQLAlchemy qrcode Pillow click gevent simplejson
 RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple requests_futures
