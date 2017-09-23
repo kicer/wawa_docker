@@ -1,16 +1,16 @@
 FROM kitsudo/python36
 MAINTAINER Dave Luo <kitsudo163@163.com>
+# apt-get install libbz2-dev openssl libssl-dev libbz2-dev zlib1g.dev libjpeg8-dev zlib1g-dev libfreetype6-dev git
 # 默认的一些基本库
-RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple redis requests xlrd autobahn 
-
 RUN cd /tmp && \
     wget https://pypi.python.org/packages/d2/5d/ed5071740be94da625535f4333793d6fd238f9012f0fee189d0c5d00bd74/Twisted-17.1.0.tar.bz2 && \
     pip3 install Twisted-17.1.0.tar.bz2 && \
     echo "Twisted"
 
 # ffmpeg
-RUN rpmdb --rebuilddb && yum install yasm-devel -y && yum clean all
-RUN cd /tmp && curl -sSL http://www.ffmpeg.org/releases/ffmpeg-3.2.tar.gz | tar zxv && cd /tmp/ffmpeg-3.2 && ./configure  --enable-shared --prefix=/usr/local/ffmpeg
+RUN rpmdb --rebuilddb && yum install yasm-devel libgomp -y && yum clean all
+# https://github.com/jrottenberg/ffmpeg/blob/master/3.3/centos/Dockerfile
+RUN cd /tmp && curl -sSL http://www.ffmpeg.org/releases/ffmpeg-3.2.tar.gz | tar zxv && cd /tmp/ffmpeg-3.2 && ./configure  --enable-shared --prefix=/usr/local && make && make install
 # 额外的扩展库
 RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple Jinja2 objgraph PyMySQL SQLAlchemy qrcode Pillow click gevent simplejson
 RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple requests_futures
