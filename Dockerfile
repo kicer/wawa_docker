@@ -8,7 +8,7 @@ RUN cd /tmp && \
     echo "Twisted"
 
 # ffmpeg
-RUN rpmdb --rebuilddb && yum -y localinstall --nogpgcheck https://download1.rpmfusion.org/free/el/rpmfusion-free-release-6.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-6.noarch.rpm && yum install ffmpeg -y &&
+RUN rpmdb --rebuilddb && yum -y localinstall --nogpgcheck https://download1.rpmfusion.org/free/el/rpmfusion-free-release-7.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-7.noarch.rpm && rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro && rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-1.el7.nux.noarch.rpm && yum install ffmpeg -y && yum clean all
 # 额外的扩展库
 RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple Jinja2 objgraph PyMySQL SQLAlchemy qrcode Pillow click gevent simplejson
 RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple requests_futures qiniu
