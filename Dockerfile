@@ -1,4 +1,4 @@
-FROM kitsudo/python36
+FROM daocloud.io/dayun_server/python36:centos7
 MAINTAINER Dave Luo <kitsudo163@163.com>
 # apt-get install libbz2-dev openssl libssl-dev libbz2-dev zlib1g.dev libjpeg8-dev zlib1g-dev libfreetype6-dev git
 # 默认的一些基本库
@@ -8,10 +8,10 @@ RUN cd /tmp && \
     echo "Twisted"
 
 # ffmpeg
-RUN rpmdb --rebuilddb && yum -y localinstall --nogpgcheck https://download1.rpmfusion.org/free/el/rpmfusion-free-release-6.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-6.noarch.rpm && yum install ffmpeg -y && yum clean all
+RUN rpmdb --rebuilddb && yum -y localinstall --nogpgcheck https://download1.rpmfusion.org/free/el/rpmfusion-free-release-6.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-6.noarch.rpm && yum install ffmpeg -y &&
 # 额外的扩展库
 RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple Jinja2 objgraph PyMySQL SQLAlchemy qrcode Pillow click gevent simplejson
-RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple requests_futures
+RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple requests_futures qiniu
 # 稳住时差
 RUN /bin/cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 # 导入证书
