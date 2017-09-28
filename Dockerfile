@@ -15,7 +15,7 @@ RUN rpmdb --rebuilddb && yum -y localinstall --nogpgcheck https://download1.rpmf
 RUN wget https://zeroc.com/download/Ice/3.7/el7/zeroc-ice3.7.repo -O /etc/yum.repos.d/zeroc-ice3.7.repo && rpmdb --rebuilddb && yum install -y gcc-c++ ice-all-runtime ice-all-devel && yum clean all && pip3.6 install zeroc-ice --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple
 # 额外的扩展库
 RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple Jinja2 objgraph PyMySQL SQLAlchemy qrcode Pillow click gevent simplejson
-RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple requests_futures qiniu
+RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple requests_futures qiniu mysqlclient
 # 稳住时差
 RUN /bin/cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 # 导入证书
