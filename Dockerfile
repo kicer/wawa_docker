@@ -34,8 +34,8 @@ ENV WORKDIR=/app/server
 ENV LOG_PATH=/var/log/server
 ENV VIRTUAL_PORT=8080
 ENV ENTRYPOINT=/app/server/start.sh
-ENV DB_HOST=mysql
-ENV REDIS_HOST=redis
+# ENV DB_HOST=mysql
+# ENV REDIS_HOST=redis
 COPY docker-entrypoint.sh /root/
 COPY .func.sh /deploy/
 COPY sleep.sh /deploy/
