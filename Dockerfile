@@ -15,7 +15,7 @@ RUN rpmdb --rebuilddb && yum -y localinstall --nogpgcheck https://download1.rpmf
 # RUN rpmdb --rebuilddb && yum install gcc gcc-c++ gtk+-devel libjpeg-devel libtiff-devel jasper-devel libpng-devel zlib-devel cmake git gtk2-devel pkgconfig numpy python python-pip python-devel gstreamer-plugins-base-devel libv4l ffmpeg-devel mplayer mencoder flvtool2 libdc1394 gtk* libgphoto2-devel && yum clean all
 # zeroc-ice
 # RUN yum install -y gcc-c++ ice-all-runtime ice-all-devel && yum clean all
-RUN pip3.6 install zeroc-ice==3.5 --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple
+RUN pip3.6 install zeroc-ice==3.7 --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple
 # 额外的扩展库
 RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple Jinja2 objgraph PyMySQL SQLAlchemy qrcode Pillow click gevent simplejson
 RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple requests_futures qiniu pyserial
