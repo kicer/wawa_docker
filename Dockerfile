@@ -11,10 +11,11 @@ RUN cd /tmp && \
 
 # ffmpeg
 # RUN rpmdb --rebuilddb && yum -y localinstall --nogpgcheck https://download1.rpmfusion.org/free/el/rpmfusion-free-release-7.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-7.noarch.rpm && rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro && rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-1.el7.nux.noarch.rpm && yum install ffmpeg -y && yum clean all
+# RUN yum install -y gstreamer-plugins-base-devel libv4l ffmpeg-devel mplayer mencoder flvtool2 libdc1394 gtk* libgphoto2-devel && yum clean all
 # opencv
-# RUN rpmdb --rebuilddb && yum install gcc gcc-c++ gtk+-devel libjpeg-devel libtiff-devel jasper-devel libpng-devel zlib-devel cmake git gtk2-devel pkgconfig numpy python python-pip python-devel gstreamer-plugins-base-devel libv4l ffmpeg-devel mplayer mencoder flvtool2 libdc1394 gtk* libgphoto2-devel && yum clean all
+RUN rpmdb --rebuilddb && yum install gcc gcc-c++ gtk+-devel libjpeg-devel libtiff-devel jasper-devel libpng-devel zlib-devel cmake git gtk2-devel pkgconfig numpy python python-pip python-devel && yum clean all
 # zeroc-ice
-# RUN yum install -y gcc-c++ ice-all-runtime ice-all-devel && yum clean all
+RUN yum install -y gcc-c++ ice-all-runtime ice-all-devel && yum clean all
 RUN pip3.6 install zeroc-ice==3.7 --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple
 # 额外的扩展库
 RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple Jinja2 objgraph PyMySQL SQLAlchemy qrcode Pillow click gevent simplejson
