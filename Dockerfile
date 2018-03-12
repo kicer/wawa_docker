@@ -4,16 +4,16 @@ MAINTAINER Dave Luo <kitsudo163@163.com>
 # apt-get install libbz2-dev openssl libssl-dev libbz2-dev zlib1g.dev libjpeg8-dev zlib1g-dev libfreetype6-dev git
 # 默认的一些基本库
 RUN cd /tmp && \
-    wget https://pypi.python.org/packages/d2/5d/ed5071740be94da625535f4333793d6fd238f9012f0fee189d0c5d00bd74/Twisted-17.1.0.tar.bz2 && \
+	pip install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple --upgrade pip && \
+    wget http://mirrors.aliyun.com/pypi/packages/d2/5d/ed5071740be94da625535f4333793d6fd238f9012f0fee189d0c5d00bd74/Twisted-17.1.0.tar.bz2 && \
     pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple Twisted-17.1.0.tar.bz2 && \
     echo "Twisted"
-# wget https://pypi.python.org/packages/d2/5d/ed5071740be94da625535f4333793d6fd238f9012f0fee189d0c5d00bd74/Twisted-17.1.0.tar.bz2 && \
 
 # ffmpeg
 # RUN rpmdb --rebuilddb && yum -y localinstall --nogpgcheck https://download1.rpmfusion.org/free/el/rpmfusion-free-release-7.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-7.noarch.rpm && rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro && rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-1.el7.nux.noarch.rpm && yum install ffmpeg -y && yum clean all
 # RUN yum install -y gstreamer-plugins-base-devel libv4l ffmpeg-devel mplayer mencoder flvtool2 libdc1394 gtk* libgphoto2-devel && yum clean all
 # opencv
-RUN rpmdb --rebuilddb && yum install gcc gcc-c++ gtk+-devel libjpeg-devel libtiff-devel jasper-devel libpng-devel zlib-devel cmake git gtk2-devel pkgconfig numpy python python-pip python-devel && yum clean all
+RUN rpmdb --rebuilddb && yum install -y gcc gcc-c++ gtk+-devel libjpeg-devel libtiff-devel jasper-devel libpng-devel zlib-devel cmake git gtk2-devel pkgconfig numpy python python-pip python-devel && yum clean all
 # zeroc-ice
 RUN yum install -y gcc-c++ ice-all-runtime ice-all-devel && yum clean all
 RUN pip3.6 install zeroc-ice==3.7 --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple
@@ -24,7 +24,7 @@ RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/
 RUN rpmdb --rebuilddb &&  yum install mysql-devel -y && yum clean all
 RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple mysqlclient
 # 一些常用的
-RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple requests_futures ws4py cos-python-sdk-v5 pymongo uwsgi gevent-websocket 
+RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple requests_futures ws4py pymongo uwsgi gevent-websocket 
 # 稳住时差
 RUN /bin/cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 # 导入证书
