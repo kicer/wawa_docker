@@ -37,6 +37,10 @@ RUN mkdir -p ~/.ssh && echo "StrictHostKeyChecking no" >> ~/.ssh/config && echo 
 RUN git config --global user.name "deploy" && git config --global user.email deploy@dayun-inc.com
 # 全局的ignore配置
 RUN echo "*.pyc" >> /root/.gitignore_global && git config --global core.excludesfile /root/.gitignore_global
+# pip 的默认配置
+COPY pip.conf /root/.pip/
+# 导出新的路径
+ENV PYTHONPATH=/pythonlib/lib/python3.6/site-packages
 # 默认的环境配置
 ENV WORKDIR=/app/server
 ENV LOG_PATH=/var/log/server
