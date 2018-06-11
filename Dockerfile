@@ -25,6 +25,8 @@ RUN rpmdb --rebuilddb &&  yum install mysql-devel -y && yum clean all
 RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple mysqlclient
 # 一些常用的
 RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple requests_futures ws4py pymongo uwsgi gevent-websocket 
+# 补充的一批
+RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple xmltodict pycrypto Celery celery-with-redis 
 # 稳住时差
 RUN /bin/cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 # 导入证书
