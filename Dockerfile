@@ -15,8 +15,8 @@ RUN cd /tmp && \
 # opencv
 RUN rpmdb --rebuilddb && yum install -y gcc gcc-c++ gtk+-devel libjpeg-devel libtiff-devel jasper-devel libpng-devel zlib-devel cmake git gtk2-devel pkgconfig numpy python python-pip python-devel && yum clean all
 # zeroc-ice
-RUN yum install -y gcc-c++ ice-all-runtime ice-all-devel && yum clean all
-RUN pip3.6 install zeroc-ice==3.7 --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple
+#RUN yum install -y gcc-c++ ice-all-runtime ice-all-devel && yum clean all
+#RUN pip3.6 install zeroc-ice==3.7 --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple
 # 额外的扩展库
 RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple Jinja2 objgraph PyMySQL SQLAlchemy qrcode Pillow click gevent simplejson
 RUN pip3 install --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple requests_futures qiniu pyserial
@@ -41,6 +41,11 @@ RUN echo "*.pyc" >> /root/.gitignore_global && git config --global core.excludes
 COPY pip.conf /root/.pip/
 # 导出新的路径
 ENV PYTHONPATH=/pythonlib/lib/python3.6/site-packages
+# 系统环境配置
+ENV TERM xterm
+ENV LC_ALL en_US.UTF-8
+ENV LANG en_US.UTF-8
+RUN alias ls='ls --color=auto'
 # 默认的环境配置
 ENV WORKDIR=/app/server
 ENV LOG_PATH=/var/log/server
