@@ -1,1 +1,6 @@
-#majiang_docker
+# majiang_docker
+
+### 访问git仓库的公钥
+```bash
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC4n1p7eW4qN4KcTaM5buVqnzSNMALzp0yyq2zLS+3JkaCx7gDSPuA/VBV5FyDziGT1gtlH2hu/a/nL9CuvTKYcC99c+b7I3T0eR11SOsFr0c9hWXzuJHNuPFctFh8wutEUkXGEQ28de6RxKD4UhRXeoL2J1bgEaadWlWSENrycjQKgf060O68gUPayqlgywNdqCMEB1C8j+hPtwrt8QZWjVbkrxEGkHR9gzAuB/fP74hQ9K5vO3U5cRvNYQiOahdMyXGXjEHnDuTMJJdRd3rVEWBYLgUX+IyOk6jdU7gecs+G2Pp9CcOcP7bQwMwqhAkQzBbZqX+f+QsNZFyVN3Loh root@VM_232_67_centos
+```
